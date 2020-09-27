@@ -1,0 +1,7 @@
+type PhoneValidated @entity {
+  id: ID!
+  timestamp: BigInt!
+  phone: String!
+  valid: Boolean
+  location:  String
+}

@@ -1,0 +1,38 @@
+{
+  "name": "phonevalidator",
+  "version": "0.1.0",
+  "scripts": {
+    "compile": "npx truffle compile",
+    "console:dev": "npx truffle console --network cldev",
+    "console:live": "npx truffle console --network live",
+    "depcheck": "echo '@chainlink/box' && depcheck --ignore-dirs=build/contracts || true",
+    "solhint": "solhint ./contracts/**/*.sol",
+    "lint": "yarn solhint",
+    "migrate:dev": "npx truffle migrate --reset --network cldev",
+    "migrate:live": "npx truffle migrate --network live",
+    "test": "NODE_ENV=test npx truffle test",
+    "create-graph": "graph create cbonoz/phone-validator --node https://api.thegraph.com/deploy/",
+    "create-local": "graph create cbonoz/phone-validator --node http://127.0.0.1:8020",
+    "codegen": "graph codegen",
+    "build": "graph build",
+    "deploy": "graph deploy cbonoz/phone-validator --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/",
+    "deploy-local": "graph deploy cbonoz/phone-validator --ipfs http://localhost:5001 --node http://127.0.0.1:8020"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@chainlink/contracts": "^0.0.8",
+    "@openzeppelin/contracts": "^3.1.0",
+    "@truffle/hdwallet-provider": "^1.0.40"
+  },
+  "devDependencies": {
+    "@chainlink/belt": "^0.0.1",
+    "@chainlink/test-helpers": "0.0.5",
+    "@openzeppelin/test-helpers": "^0.5.6",
+    "chai": "^4.2.0",
+    "depcheck": "^0.9.1",
+    "solhint": "^2.1.0",
+    "truffle": "^5.1.5",
+    "@graphprotocol/graph-cli": "^0.17.1",
+    "@graphprotocol/graph-ts": "^0.17.0"
+  }
+}
