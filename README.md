@@ -1,8 +1,7 @@
 Veriphone - Chainlink-backed phone validation
-
 ---
 
-Yellow books are a thing of the past.
+<b>Yellow books are a thing of the past.</b>
 
 Veriphone is a project with the goal of creating the largest index of chainlink-validated phone numbers.
 
