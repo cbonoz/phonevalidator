@@ -22,3 +22,8 @@ The Graph API: https://thegraph.com/explorer/subgraph/cbonoz/phone-validator
 Chris Buonocore
 
 Built for the Chainlink Hackathon 2020.
+
+<!--
+Useful links
+* https://github.com/robin-thomas/flyt/blob/master/src/truffle/contracts/Flyt.sol
+-->

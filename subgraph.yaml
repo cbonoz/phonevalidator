@@ -1,4 +1,4 @@
-specVersion: 0.0.2
+specVersion: 0.0.3
 description: A phone validation archive.
 repository: https://github.com/cbonoz/phonevalidator
 schema:
@@ -6,13 +6,13 @@ schema:
 dataSources:
   - kind: ethereum/contract
     name: PhoneValidator
-    network: ropsten
+    network: kovan
     source:
-      address: "0x7c68a3c9477f9b7bd491f2c788873cd6aa7630c0"
+      address: "0x7417218f8C3F27b493bE78341202819D45612186"
       abi: PhoneValidator
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.3
+      apiVersion: 0.0.4
       language: wasm/assemblyscript
       entities:
         - PhoneValidator

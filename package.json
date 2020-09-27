@@ -32,7 +32,7 @@
     "depcheck": "^0.9.1",
     "solhint": "^2.1.0",
     "truffle": "^5.1.5",
-    "@graphprotocol/graph-cli": "^0.17.1",
-    "@graphprotocol/graph-ts": "^0.17.0"
+    "@graphprotocol/graph-cli": "^0.18.0",
+    "@graphprotocol/graph-ts": "^0.18.1"
   }
 }
