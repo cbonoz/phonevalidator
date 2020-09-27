@@ -30,5 +30,5 @@ def validate(phone, methods=['GET']):
             'location': '',
             'is_valid_number': False
         }
-
+    data['is_valid'] = 1 if data.get('is_valid_number') else 0
     return data

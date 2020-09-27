@@ -8,6 +8,6 @@ export function handleLastPhoneValidated(event: LastPhoneValidated): void {
   // phone.timestamp = new BigInt(new Date().getMilliseconds());
   phone.phone = event.params.phone.toString();
   phone.valid = event.params.valid || true;
-  phone.location = event.params.location;
+  phone.location = event.params.location.toString();
   phone.save();
 }

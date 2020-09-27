@@ -8,13 +8,15 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 
 // https://docs.chain.link/docs/fulfilling-requests
 // https://phonenumbervalidation.apifex.com/
+// private constant VALIDATE_PHONE_URL = "https://phonenumbervalidation.apifex.com/api/v1/validate?phonenumber=%2B1%20";
 
 contract PhoneValidator is ChainlinkClient, Ownable {
     string
         private constant VALIDATE_PHONE_URL = "https://le5f4ysh45.execute-api.us-east-1.amazonaws.com/api/validate/";
 
     string public lastPhone;
-    string public lastLocation;
+    bytes public lastLocation;
+    string public lastRequest;
     bool public lastValid;
     uint256 public ethereumPrice;
 
@@ -54,63 +56,29 @@ contract PhoneValidator is ChainlinkClient, Ownable {
         Chainlink.Request memory req = buildChainlinkRequest(
             jobId,
             address(this),
-            this.fulfillLastPhone.selector
+            this.fulfill.selector
         );
 
         string memory _url = getTestPath(_phone);
         req.add("get", _url);
-        req.add("path", "is_valid_number");
+        req.add("path", "is_valid");
         lastPhone = _phone;
+        lastRequest = _url;
         return sendChainlinkRequestTo(oracle, req, fee);
-    }
-
-    function fulfillLastPhone(bytes32 _requestId, bool _valid)
-        public
-        recordChainlinkFulfillment(_requestId)
-    {
-        // lastLocation = stringLocation;
-        lastValid = _valid;
-        string memory stringLocation = "";
-        emit LastPhoneValidated(_requestId, lastPhone, _valid, stringLocation);
-    }
-
-    /**
-     * Create a Chainlink request to retrieve API response, find the target price
-     * data, then multiply by 100 (to remove decimal places from price).
-     */
-    function requestEthereumPrice() public returns (bytes32 requestId) {
-        Chainlink.Request memory request = buildChainlinkRequest(
-            jobId,
-            address(this),
-            this.fulfill.selector
-        );
-
-        // Set the URL to perform the GET request on
-        request.add(
-            "get",
-            "https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=USD"
-        );
-
-        // Set the path to find the desired data in the API response, where the response format is:
-        // {"USD":243.33}
-        request.add("path", "USD");
-
-        // Multiply the result by 100 to remove decimals
-        request.addInt("times", 100);
-
-        // Sends the request
-        return sendChainlinkRequestTo(oracle, request, fee);
     }
 
     /**
      * Receive the response in the form of uint256
      */
 
-    function fulfill(bytes32 _requestId, uint256 _price)
+    function fulfill(bytes32 _requestId, uint256 valid)
         public
         recordChainlinkFulfillment(_requestId)
     {
-        ethereumPrice = _price;
+        string memory _location = "";
+        bool isValid = valid == 1;
+        lastValid = isValid;
+        emit LastPhoneValidated(_requestId, lastPhone, isValid, _location);
     }
 
     // UTILITY
@@ -128,6 +96,11 @@ contract PhoneValidator is ChainlinkClient, Ownable {
 
     function getChainlinkToken() public view returns (address) {
         return chainlinkTokenAddress();
+    }
+
+    function getLastLocation() public view returns (string memory) {
+        string memory converted = string(lastLocation);
+        return converted;
     }
 
     /**

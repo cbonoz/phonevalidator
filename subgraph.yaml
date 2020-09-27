@@ -1,5 +1,5 @@
-specVersion: 0.0.3
-description: A phone validation archive.
+specVersion: 0.0.4
+description: A phone validation archive built on chainlink.
 repository: https://github.com/cbonoz/phonevalidator
 schema:
   file: ./schema.graphql
@@ -8,7 +8,7 @@ dataSources:
     name: PhoneValidator
     network: kovan
     source:
-      address: "0x7417218f8C3F27b493bE78341202819D45612186"
+      address: "0xAb4aAEE3b44C32B78679B7231A40FF7C336dC002"
       abi: PhoneValidator
     mapping:
       kind: ethereum/events
