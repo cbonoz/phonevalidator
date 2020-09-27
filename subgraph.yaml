@@ -1,4 +1,4 @@
-specVersion: 0.0.4
+specVersion: 0.0.2
 description: A phone validation archive built on chainlink.
 repository: https://github.com/cbonoz/phonevalidator
 schema:
