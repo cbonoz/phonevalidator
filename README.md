@@ -1,5 +1,8 @@
-Veriphone - Chainlink-backed phone validation
----
+<p align='center'>
+    <img src='./img/logo.png' width=600/>
+</p>
+
+## Veriphone - Chainlink-backed phone validation
 
 <b>Yellow books are a thing of the past.</b>
 
